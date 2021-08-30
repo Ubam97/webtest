@@ -15,9 +15,9 @@ pipeline {
     }
   }
     stage('Clone repository') {
-        checkout scm }
- }
+        checkout scm 
+        }
      stage('Build image') {
          app = docker.build("eub456/test")
      }
- }
+}
