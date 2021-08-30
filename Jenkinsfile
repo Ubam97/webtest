@@ -1,9 +1,11 @@
 
- node {
-     stage('Clone repository') {
-         checkout scm
-     }
-
+pipeline {
+  agent {
+    node {
+      label 'master'
+    }
+  }
+  stages {
      stage('Git Progress') {
         steps {
             git credentialsId: 'git', 
@@ -33,5 +35,5 @@
                 app.push("latest")
             }
      }
- }
- 
+  }
+}
