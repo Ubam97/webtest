@@ -13,12 +13,12 @@ pipeline {
         sh './gradlew clean build'
             }
         }
-    stage ('Docker image build') {
-        stesps {
-            script {
-            sh 'docker build -t eub456/test .'
-            }
+  stage ('Docker image build') {
+      stesps {
+        script {
+          sh 'docker build -t eub456/test .'
         }
-    }
+      }
+ s }
   }
 }
