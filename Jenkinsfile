@@ -1,9 +1,6 @@
 pipeline {
   agent {
-    node {
-      label 'main'
-    }
-  }
+    node{
   stages {
     stage('Git Progress') {
       steps {
@@ -15,6 +12,8 @@ pipeline {
       steps {
         sh 'gradle clean build -x test -b build-server.gradle'
       }
+  }
+  }
     }
   }
 }
