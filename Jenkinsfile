@@ -9,9 +9,14 @@ pipeline {
         }
     }
 
-    stages {
-        withGradle {
-            sh './gradlew build'
-      }
-    }
+tools {
+    'gradle'
+}
+
+stage ('Build') 
+{ 
+    steps {
+         bat "./gradlew.bat build" }
+          }
+}
 }
