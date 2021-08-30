@@ -4,7 +4,7 @@ pipeline {
       label 'main'
     }
   }
-  
+
   stages {
     stage('Git Progress') {
       steps {
@@ -29,5 +29,5 @@ pipeline {
                 app.push("latest")
             }
         }     
-  }
+   }
 }
