@@ -13,11 +13,6 @@ pipeline {
         sh './gradlew clean build'
             }
         }
-    stage('Clone repository') {
-        steps { 
-            checkout scm
-        }
-    }
     stages {
         stage ('Docker image build') {
             stesps {
