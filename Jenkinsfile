@@ -14,13 +14,11 @@ pipeline {
       }
     }
 
- node {
     stage('Clone Repository'){
         stage {
             checkout scm
         }
     }
- }
 
     stage('Dcoker image build') {
         steps {
