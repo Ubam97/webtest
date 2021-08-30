@@ -5,13 +5,14 @@ pipeline {
       label 'master'
     }
   }
+
   stages {
      stage('Git Progress') {
         steps {
             git credentialsId: 'git', 
             url: 'https://github.com/eub456/webtest.git'
-      }
-    }
+        }
+     }
 
      stage('Gradle Build') {
         steps {
