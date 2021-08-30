@@ -7,8 +7,8 @@ pipeline {
   stages {
     stage('Git Progress') {
       steps {
-        git credentialsId: '5db03fd5-6b54-45c6-', 
-        url: 'https://github.com/smartjy/(PROJECT_NAME).git'
+        git credentialsId: 'git', 
+        url: 'https://github.com/eub456/webtest.git'
       }
     }
   stage('Gradle Build') {
