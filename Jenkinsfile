@@ -19,9 +19,7 @@ pipeline {
         }
     }
     stage ('Docker image build')
-        steps {
             sh 'docker build -t eub456/test .'
-        }
   }
 }
 
