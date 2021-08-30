@@ -7,18 +7,12 @@ pipeline {
         git branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
       }
     }
-  stage('Gradle Build') {
+  stage('Gradle Build & Image buil') {
       steps {
         sh 'chmod +x ./gradlew'
         sh './gradlew clean build'
-            }
+        sh 'docekr build -t eub456/test .'
         }
-  stage ('Docker image build') {
-      stesps {
-        script {
-          sh 'docker build -t eub456/test .'
-        }
-      }
-  }
+    }
   }
 }
