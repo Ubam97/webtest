@@ -13,8 +13,7 @@ pipeline {
         sh './gradlew clean build'
       }
     }
-  stage('Build image') {
-     app = docker.build("eub456/test")
-      }
-  }
+    stage('Build image') {
+        app = docker.build('eub456/test')
+    }
 }
