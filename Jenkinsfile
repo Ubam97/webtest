@@ -13,11 +13,9 @@ pipeline {
         sh './gradlew clean build'
             }
         }
-    stages {
-        stage ('Docker image build') {
-            stesps {
-                sh 'docker build -t eub456/test .'
-            }
+    stage ('Docker image build') {
+        stesps {
+            sh 'docker build -t eub456/test .'
         }
     }
   }
