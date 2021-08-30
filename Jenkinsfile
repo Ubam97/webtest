@@ -18,7 +18,9 @@ pipeline {
         }
     }
     stage('Build image') {
-        app = docker.build("eub456/test")
+        steps {
+            app = docker.build("eub456/test")
+        }
     }
   }
 }
