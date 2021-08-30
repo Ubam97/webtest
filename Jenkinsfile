@@ -11,7 +11,7 @@ pipeline {
       steps {
         sh 'chmod +x ./gradlew'
         sh './gradlew clean build'
-        sh 'docekr build -t eub456/test .'
+        sh 'docker build -t eub456/test .'
         }
     }
   }
