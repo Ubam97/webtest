@@ -10,8 +10,8 @@ pipeline {
     }
 
     stages {
-      withGradle {
-          sh './gradlew build'
+        withGradle {
+            sh './gradlew build'
       }
     }
 }
