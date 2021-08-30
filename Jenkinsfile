@@ -4,6 +4,20 @@
          checkout scm
      }
 
+     stages {
+    stage('Git Progress') {
+      steps {
+        git credentialsId: 'git', 
+        url: 'https://github.com/eub456/webtest.git'
+      }
+    }
+
+       stage('Gradle Build') {
+      steps {
+        sh 'gradle clean build -x test -b build-server.gradle'
+      }
+    }
+
      stage('Build image') {
          app = docker.build("eub456/test")
      }
@@ -13,20 +27,6 @@
             sh 'echo "Tests passed"'
         }
      }
-
-     stages {
-    stage('Git Progress') {
-      steps {
-        git credentialsId: 'git', 
-        url: 'https://github.com/eub456/webtest.git'
-      }
-    }
-
-      stage('Gradle Build') {
-      steps {
-        sh 'gradle clean build -x test -b build-server.gradle'
-      }
-    }
 
      stage('Push image') {
             docker.withRegistry('https://registry.hub.docker.com', 'test') {
