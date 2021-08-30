@@ -13,13 +13,8 @@ pipeline {
         sh './gradlew clean build'
       }
     }
-  node { 
-    stage('Clone repository') {
-       checkout scm 
-         }
-    stage('Build image') {
-        app = docker.build("jenkins-docker-pipeline/my-image") 
-    }
+    stage('Dcoker image build') {
+        sh 'docker buid -t eub456/test'
     }
   }
 }
