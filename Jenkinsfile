@@ -14,11 +14,8 @@ pipeline {
             }
         }
     stage('Clone repository') {
-        steps { checkout scm
-        }
-    }
-    stage('Build image') {
-        steps { app = docker.build("eub456/test")
+        steps { 
+            checkout scm
         }
     }
   }
