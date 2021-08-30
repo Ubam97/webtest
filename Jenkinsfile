@@ -10,9 +10,11 @@ pipeline {
     }
 
     stage {
+        agent {
         stage('Build gradle'){
             steps {
                  sh 'gradle clean build -x test'
+                }
             }
         }
     }
