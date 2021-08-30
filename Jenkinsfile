@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Dcoker image build') {
         steps {
-        sh 'docker build -t eub456/test'
+        app = docker.build("eub456/test")
         }
     }
   }
