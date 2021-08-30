@@ -9,7 +9,9 @@ pipeline {
         }
     }
 
+    stage {
         stage('Build') {
             gradle 'clean build'
         }
+    }
 }
