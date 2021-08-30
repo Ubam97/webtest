@@ -22,4 +22,3 @@ pipeline {
          app = docker.build("eub456/test")
      }
  }
-}
