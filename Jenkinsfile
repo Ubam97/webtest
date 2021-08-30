@@ -34,4 +34,5 @@
                 app.push("latest")
             }
         }
+     }
  }
