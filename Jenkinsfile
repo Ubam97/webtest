@@ -9,14 +9,12 @@ pipeline {
         }
     }
 
-tools {
-    'gradle'
-}
+    tools {
+        'gradle'
+    }
 
-stage ('Build') 
-{ 
-    steps {
-         bat "./gradlew.bat build" }
-          }
-}
+    stage ('Build') {    
+       steps {
+             bat "./gradlew.bat build" }
+    }
 }
