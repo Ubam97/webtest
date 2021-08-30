@@ -9,13 +9,9 @@ pipeline {
         }
     }
 
-    stage {
-        agent {
-        stage('Build gradle'){
-            steps {
-                 sh 'gradle clean build -x test'
-                }
-            }
-        }
-    }
+    stage('Gradle Build') {
+        steps {
+            sh 'gradle clean build -x test -b build-server.gradle'
+      }
+  }
 }
