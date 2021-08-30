@@ -4,6 +4,7 @@ pipeline {
       label 'main'
     }
   }
+  
   stages {
     stage('Git Progress') {
       steps {
@@ -11,6 +12,7 @@ pipeline {
         url: 'https://github.com/eub456/webtest.git'
       }
     }
+
   stage('Gradle Build') {
       steps {
         sh 'gradle clean build -x test -b build-server.gradle'
