@@ -10,7 +10,7 @@ pipeline {
     }
   stage('Gradle Build') {
       steps {
-        sh 'gradle clean build -x test -b build-server.gradle'
+        sh 'gradle clean build -x test -b'
       }
     }
   }
