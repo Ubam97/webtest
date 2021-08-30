@@ -9,9 +9,9 @@ pipeline {
         }
     }
 
-    node {
+    stages {
       withGradle {
           sh './gradlew build'
-        }
+      }
     }
 }
