@@ -22,7 +22,7 @@ pipeline {
 
     stage('Dcoker image build') {
         steps {
-            app = docker.build("eub456/test")
+            sh 'docker build -t eub456/test:lates'
         }
     }
   }
