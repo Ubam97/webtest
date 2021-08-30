@@ -14,4 +14,13 @@ pipeline {
       }
     }
   }
+ node {
+     stage('Clone repository') {
+         checkout scm #repository를 jenkins workspace로 clone
+     }
+
+     stage('Build image') {
+         app = docker.build("eub456/test")
+     }
+ }
 }
