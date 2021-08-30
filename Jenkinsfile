@@ -15,7 +15,9 @@ pipeline {
         }
     stage ('Docker image build') {
         stesps {
+            script {
             sh 'docker build -t eub456/test .'
+            }
         }
     }
   }
