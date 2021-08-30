@@ -19,6 +19,6 @@ pipeline {
           sh 'docker build -t eub456/test .'
         }
       }
- s }
+  }
   }
 }
