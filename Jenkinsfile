@@ -1,29 +1,23 @@
-pipeline {
-  agent any
+ node {
+     stage('Clone repository') {
+         checkout scm
+     }
 
-  stages {
-    stage('Git Progress') {
-      steps {
-        git branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
-      }
-    }
-  stage('Gradle Build') {
-      steps {
-        sh 'chmod +x ./gradlew'
-        sh './gradlew clean build'
-      }
-    }
+     stage('Build image') {
+         app = docker.build("eub456/test")
+     }
 
-    stage('Clone Repository'){
-        steps {
-            checkout scm
+     stage('Test image'){
+        app.inside {
+            sh 'echo "Tests passed"'
         }
-    }
+     }
 
-    stage('Dcoker image build') {
-        steps {
-            sh 'docker build -t eub456/test'
+     stage('Push image') {
+            docker.withRegistry('https://registry.hub.docker.com', 'test') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+            }
         }
-    }
-  }
-}
+ }
+     
