@@ -1,14 +1,11 @@
-node{
-    stage('Git Progress') {
-      steps {
-        git credentialsId: 'git', 
-        url: 'https://github.com/eub456/webtest.git'
-      }
-    }
+pipeline {
+    agent any
 
-  stage('Gradle Build') {
-      steps {
-        sh 'gradle clean build -x test -b build-server.gradle'
-      }
-  }
+    stages {
+        stage('Hello') {
+            steps {
+                git branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
+            }
+        }
+    }
 }
