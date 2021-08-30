@@ -18,7 +18,6 @@ pipeline {
             checkout scm
         }
     }
-
     stage ('Docker image build') {
         stesps {
             sh 'docker build -t eub456/test .'
