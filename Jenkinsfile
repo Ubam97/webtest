@@ -13,9 +13,8 @@ pipeline {
         sh './gradlew clean build'
             }
         }
-    }
-
     stage('Clone repository') {
              checkout scm
     }
+  }
 }
