@@ -6,8 +6,8 @@
 
      stage('Git Progress') {
         steps {
-        git credentialsId: 'git', 
-        url: 'https://github.com/eub456/webtest.git'
+            git credentialsId: 'git', 
+            url: 'https://github.com/eub456/webtest.git'
       }
     }
 
