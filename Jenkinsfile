@@ -9,9 +9,9 @@ pipeline {
         }
     }
 
-    stage('Gradle Build') {
-        steps {
-            sh 'gradle clean build -x test -b build-server.gradle'
-      }
-  }
+    node {
+      withGradle {
+          sh './gradlew build'
+        }
+    }
 }
