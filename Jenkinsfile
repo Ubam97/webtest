@@ -13,6 +13,15 @@ pipeline {
         sh './gradlew clean build'
       }
     }
+
+ node {
+    stage('Clone Repository'){
+        stage {
+            checkout scm
+        }
+    }
+ }
+
     stage('Dcoker image build') {
         steps {
             app = docker.build("eub456/test")
