@@ -12,13 +12,8 @@ pipeline {
         sh 'chmod +x ./gradlew'
         sh './gradlew clean build'
       }
-    }
   }
-  stages {
-     stage('Clone repository') {
-         checkout scm
-     }
-
+  
      stage('Build image') {
          app = docker.build("eub456/test")
      }
