@@ -14,7 +14,7 @@ pipeline {
         }
     }
   stage('Push docker image') {
-    container('docker') {
+    steps {
         withDockerRegistry([ credentialsId: "test", url: "https://hub.docker.com/repository/docker/eub456/test" ]) {
             docker.image("eub456/test:1.0").push()
         }
