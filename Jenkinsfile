@@ -25,12 +25,14 @@ pipeline {
     stage ('Push image') {
         steps {
                 checkout scm
+                
                     'docker' docker.withRegistry('https://registry.hub.docker.com', 'test') {
 
                             customImage = docker.build("eub456/test:${env.BUILD_ID}")
 
                             customImage.push()
                    }
+                   sh 'true'
         }
     }
   }
