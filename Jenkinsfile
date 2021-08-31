@@ -1,6 +1,5 @@
 pipeline {
   agent any
-
   stages {
     stage('Git Progress') {
       steps {
@@ -16,14 +15,9 @@ pipeline {
     }
     stage ('Docker-hub login') {
         steps {
-            'step1'    docker.withRegistry('https://registry.hub.docker.com', 'test') {
-            }
-        }
-    }
-    stage ('Image push') {
-        steps {
-            'step1' app.push("${env.BUILD_NUMBER}")
-            'step2' app.push("latest")
+                docker.withRegistry('https://registry.hub.docker.com', 'test') {
+                sh 'docker push eub456/test:lates'
+                }
         }
     }
   }
