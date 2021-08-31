@@ -13,12 +13,15 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-  stage('Push docker image') {
-    steps {
-        withDockerRegistry([ credentialsId: "test", url: "https://registry.hub.docker.com" ]) {
-            docker.image("eub456/test").push()
-        }
+    node {
+        checkout scm
+
+            docker.withRegistry('https://registry.hub.docker.com', 'test') {
+
+                    def customImage = docker.build("eub456/test:${env.BUILD_ID}")
+
+                        customImage.push()
+            }
     }
-  }
   }
 }
