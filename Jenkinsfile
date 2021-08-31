@@ -13,11 +13,11 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    stage ('Docker-hub login') {
+    stage ('Docker-hub login') {   
         steps {
                'step' docker.withRegistry('https://registry.hub.docker.com', 'test') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
+               'step' app.push("${env.BUILD_NUMBER}")
+               'step' app.push("latest")
                 }
         }
     }
