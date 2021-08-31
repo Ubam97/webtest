@@ -13,8 +13,9 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    node {
-        checkout scm
+    stage {
+        node {
+            checkout scm
 
             docker.withRegistry('https://registry.hub.docker.com', 'test') {
 
@@ -22,6 +23,7 @@ pipeline {
 
                         customImage.push()
             }
+        }
     }
   }
 }
