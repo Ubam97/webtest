@@ -1,7 +1,5 @@
 pipeline {
   agent any
-  import jenkins.model.*
-jenkins = Jenkins.instance
   stages {
     stage('Git Progress') {
       steps {
@@ -18,7 +16,7 @@ jenkins = Jenkins.instance
     stage ('Push image') {
         steps {
                 checkout scm
-                  agent any  
+                    any() 
                     'docker' docker.withRegistry('https://registry.hub.docker.com', 'test') {
 
                         def customImage = docker.build("eub456/test:${env.BUILD_ID}")
