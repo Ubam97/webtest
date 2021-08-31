@@ -18,8 +18,10 @@ pipeline {
         }
     }
     stage('Publish test results') {
+        steps {
         junit '**/build/test-results/test/*.xml'
-    } 
+        }
+    }
     stage ('Push image') {
         steps {
                 checkout scm
