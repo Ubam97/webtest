@@ -10,7 +10,6 @@ pipeline {
       steps {
         sh 'chmod +x ./gradlew'
         sh './gradlew clean build'
-        sh 'docker build -t eub456/test .'
         }
     }
     stage ('Push image') {
