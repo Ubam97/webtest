@@ -16,14 +16,10 @@ pipeline {
     }
     stage ('Docker-hub login') {
         steps {
-           'step' docker.withRegistry('https://registry.hub.docker.com', 'test') {
-            }
-        }
-    }
-    stage ('Image push') {
-        steps {
-            sh 'docker push eub456/test:lates'
-            sh 'docker push eub456/test:${env.BUILD_NUMBER}'
+           script {
+                docker.withRegistry('https://registry.hub.docker.com', 'test')
+                sh 'docker push eub456/test:lates'
+           }
         }
     }
   }
