@@ -20,13 +20,10 @@ pipeline {
             }
         }
     }
-
-    stages {
-        stage ('Image push') {
+    stage ('Image push') {
         steps {
             sh 'docker push eub456/test:lates'
             sh 'docker push eub456/test:${env.BUILD_NUMBER}'
-        }
         }
     }
   }
