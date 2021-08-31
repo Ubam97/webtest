@@ -15,7 +15,7 @@ pipeline {
     }
     stage ('Docker-hub login') {   
         steps {
-           'login' docker.withRegistry('https://registry.hub.docker.com', 'test') {
+           withDockerRegistry('https://registry.hub.docker.com', 'test') {
             }
         }
     }
