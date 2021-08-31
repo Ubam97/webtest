@@ -16,7 +16,7 @@ pipeline {
     stage ('Push image') {
         steps {
                 checkout scm
-
+                  agent any  
                     'docker' docker.withRegistry('https://registry.hub.docker.com', 'test') {
 
                         def customImage = docker.build("eub456/test:${env.BUILD_ID}")
