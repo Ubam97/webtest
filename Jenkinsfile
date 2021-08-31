@@ -15,10 +15,8 @@ pipeline {
     }
     stage ('Docker-hub login') {   
         steps {
-               'step' docker.withRegistry('https://registry.hub.docker.com', 'test') {
-               'step' app.push("${env.BUILD_NUMBER}")
-               'step' app.push("latest")
-                }
+            docker.withRegistry('https://registry.hub.docker.com', 'test') {
+            }
         }
     }
   }
