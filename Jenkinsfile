@@ -14,9 +14,10 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    stage ('Image push') {
+    stage ('Docker-hub login') {
         steps {
-            'step1'  docker.withRegistry('https://registry.hub.docker.com', 'test')
+            'step1'  docker.withRegistry('https://registry.hub.docker.com', 'test') {
+            }
         }
     }
   }
