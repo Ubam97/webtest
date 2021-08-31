@@ -7,12 +7,9 @@ pipeline {
       }
     }
     stage('Gradle Junit Test') {
-        script {
             steps {
                 sh "chmod +x gradlew; ./gradlew test"
-
             }
-        }
     }
   stage('Gradle Build ') {
       steps {
