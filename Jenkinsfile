@@ -13,11 +13,12 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    stage ('Docker-hub login') {   
-        steps {
-           'withDockerRegistry' docker.withRegistry('https://registry.hub.docker.com', 'test') {
+        stage('Push docker image') {
+            container('docker') {
+                withDockerRegistry([ credentialsId: "test", url: "https://hub.docker.com/repository/docker/eub456/test" ]) {
+                    docker.image("eub456/test:1.0").push()
+                }
             }
         }
-    }
   }
 }
