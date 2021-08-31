@@ -6,7 +6,15 @@ pipeline {
         git branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
       }
     }
-  stage('Gradle Build & Image buil') {
+    stage('Gradle Junit Test') {
+        script {
+            try {
+                sh "chmod +x gradlew; ./gradlew test"
+
+            }
+        }
+    }
+  stage('Gradle Build ') {
       steps {
         sh 'chmod +x ./gradlew'
         sh './gradlew clean build'
