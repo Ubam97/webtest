@@ -17,8 +17,6 @@ pipeline {
     stage ('Image push') {
         steps {
             'step1'  docker.withRegistry('https://registry.hub.docker.com', 'test')
-              sh "docker push eub456/test:${env.BUILD_NUMBER}"
-              sh 'docker push eub456/test:latest'
         }
     }
   }
