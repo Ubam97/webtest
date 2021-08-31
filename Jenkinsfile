@@ -20,6 +20,7 @@ pipeline {
             }
         }
     }
+    
     stages {
         stage ('Image push') {
         step {
