@@ -17,7 +17,7 @@ pipeline {
         steps {
                 checkout scm
 
-                    'step1' docker.withRegistry('https://registry.hub.docker.com', 'test') {
+                    'docker' docker.withRegistry('https://registry.hub.docker.com', 'test') {
 
                         def customImage = docker.build("eub456/test:${env.BUILD_ID}")
 
