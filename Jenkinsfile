@@ -13,7 +13,7 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    stage {
+    stage ('Push image') {
         node {
             checkout scm
 
