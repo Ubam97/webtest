@@ -13,7 +13,8 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
-    stage ('Push image') {
+  }
+      stage ('Push image') {
         steps {
                 checkout scm
 
@@ -22,8 +23,7 @@ pipeline {
                         def customImage = docker.build("eub456/test:${env.BUILD_ID}")
 
                             customImage.push()
-                   }
+                    }
         }
-    }
-  }
+      }
 }
