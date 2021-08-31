@@ -17,6 +17,9 @@ pipeline {
         sh './gradlew clean build'
         }
     }
+    stage('Publish test results') {
+        junit '**/build/test-results/test/*.xml'
+    } 
     stage ('Push image') {
         steps {
                 checkout scm
