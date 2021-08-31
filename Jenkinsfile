@@ -14,5 +14,13 @@ pipeline {
         sh 'docker build -t eub456/test .'
         }
     }
+    stage ('Image push') {
+        steps {
+            docker.withRegistry('https://registry.hub.docker.com', 'test') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+            }
+        }
+    }
   }
 }
