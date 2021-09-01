@@ -36,10 +36,8 @@ pipeline {
         dir('build/libs') {
             stage('Deploy') {
                 script {
-                    try {
-                        sshagent (credentials: ['test-web']) {
-                            sh 'scp -o StrictHostKeyChecking=no demo-0.0.1-SNAPSHOT.jar	ubuntu@3.34.94.137:/home/ubuntu/deploy'
-                        }
+                    sshagent (credentials: ['test-web']) {
+                        sh 'scp -o StrictHostKeyChecking=no demo-0.0.1-SNAPSHOT.jar	ubuntu@3.34.94.137:/home/ubuntu/deploy'
                     }
                 }
             }
