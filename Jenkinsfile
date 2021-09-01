@@ -22,7 +22,7 @@ pipeline {
                 junit '**/build/test-results/test/*.xml'
             }
         }
-        stage ('Push image') {
+        stage('Push image') {
             steps {
                 script {
                     checkout scm
