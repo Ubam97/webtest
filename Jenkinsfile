@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                def dockerRun = "docker run -p 7777:7777 -d eub456/test:${env.BUILD_ID}"
+                dockerRun = "docker run -p 7777:7777 -d eub456/test:${env.BUILD_ID}"
                 sshagent (credentials: ['test-web']) {
                     sh 'scp -o StrictHostKeyChecking=no -r build/libs/demo-0.0.1-SNAPSHOT.jar ubuntu@3.34.94.137:/home/ubuntu/deploy'
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@3.34.94.137 ${dockerRun}"
