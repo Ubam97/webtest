@@ -33,11 +33,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploy')
+        stage('Deploy') {
             steps {
                 sshagent (credentials: ['test-web']) {
                     sh 'scp -o UserKnownHostFile=/dev/null -o StrictHostKeyChecking=no -r build/libs/demo-0.0.1-SNAPSHOT.jar ubuntu@3.34.94.137:/home/ubuntu/deploy'
                 }
             }
+        }
     }
 }
