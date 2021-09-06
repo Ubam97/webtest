@@ -37,10 +37,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    def dockerRun = "docker run -p 7777:7777 -d eub456/test:${env.BUILD_ID}"
-                    sshagent (credentials: ['test-web']) {
-                        sh 'scp -o StrictHostKeyChecking=no -r build/libs/demo-0.0.1-SNAPSHOT.jar ubuntu@3.34.94.137:/home/ubuntu/deploy'
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.34.94.137 ${dockerRun}"
+                    sshagent (credentials: ['argoCD']) {
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.34.127.63 argocd repo add https://github.com/eub456/NginxTemplateForArgocd.git"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.34.127.63 argocd app create test --repo https://github.com/eub456/NginxTemplateForArgocd.git --sync-option ApplyOutOfSyncOnly=true --path templates --dest-server https://kubernetes.default.svc --dest-namespace default"
                     }
                 }
             }
