@@ -34,7 +34,7 @@ pipeline {
                 }
             }
         }
-        stage('argoCD Deploy') {
+        stage('ArgoCD Deploy') {
             steps {
                 script {
                     sshagent (credentials: ['argoCD']) {
