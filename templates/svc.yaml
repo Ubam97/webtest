@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-test
+  name: test
 spec:
   selector:
-    app: nginx-test
+    app: test
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 7777
   type: NodePort
