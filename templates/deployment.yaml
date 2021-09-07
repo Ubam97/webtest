@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: test
-          image: eub456/test:9
+          image: eub456/test:latest
           ports:
             - containerPort: 80
