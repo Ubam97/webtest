@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: test
 spec:
+  type: LoadBalancer
   selector:
     app: test
   ports:
     - port: 80
       targetPort: 7777
-  type: NodePort
