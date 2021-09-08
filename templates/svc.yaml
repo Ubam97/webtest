@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: test
 spec:
-  type: NodePort
   selector:
     app: test
   ports:
