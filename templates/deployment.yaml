@@ -14,6 +14,8 @@ spec:
       labels:
         app: test
     spec:
+      nodeSelector:
+        server: test
       containers:
         - name: test
           image: eub456/test:latest
