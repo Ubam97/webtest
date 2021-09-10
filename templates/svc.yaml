@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: test
 spec:
-  type: LoadBlancer
+  type: LoadBalancer
   selector:
     app: test
   ports:
