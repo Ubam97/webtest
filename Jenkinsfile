@@ -6,16 +6,7 @@ pipeline {
                 git  branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
             }
         }
-        stage('SonarQube analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('My SonarQube Server') {
-                        sh "chmod +x gradlew"
-                        sh "./gradlew sonarqube -Dsonar.projectKey=test -Dsonar.host.url=http://13.124.107.70:9000 -Dsonar.login=jenkins"
-                    }
-                }
-            }
-        }
+
         stage('Gradle Junit Test') {
             steps {
                 sh 'chmod +x ./gradlew'
@@ -31,6 +22,16 @@ pipeline {
         stage('Publish test results') {
             steps {
                 junit '**/build/test-results/test/*.xml'
+            }
+        } 
+       stage('SonarQube analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('My SonarQube Server') {
+                        sh "chmod +x gradlew"
+                        sh "./gradlew sonarqube -Dsonar.projectKey=test -Dsonar.host.url=http://13.124.107.70:9000 -Dsonar.login=jenkins"
+                    }
+                }
             }
         }
         stage('Push image') {
