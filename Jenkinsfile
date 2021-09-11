@@ -27,6 +27,7 @@ pipeline {
        stage('SonarQube analysis') {
             steps {
                 script {
+                    def scannerHome = tool 'SonarScanner 4.6.2.2472';
                     withSonarQubeEnv(installationName:'Sonar') {
                         sh "./gradlew sonarqube \
                         -Dsonar.projectKey=sonar-test \
