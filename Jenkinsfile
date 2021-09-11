@@ -8,9 +8,11 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    sh "chmod +x gradlew"
-                    sh "./gradlew sonarqube -Dsonar.projectKey=test -Dsonar.host.url=http://13.124.107.70:9000 -Dsonar.login=jenkins"
+                script {
+                    withSonarQubeEnv('My SonarQube Server') {
+                        sh "chmod +x gradlew"
+                        sh "./gradlew sonarqube -Dsonar.projectKey=test -Dsonar.host.url=http://13.124.107.70:9000 -Dsonar.login=jenkins"
+                    }
                 }
             }
         }
