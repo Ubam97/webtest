@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner 4.6.2.2472';
-                    withSonarQubeEnv(installationName:'Sonar') {
+                    withSonarQubeEnv(credentialsId: 'sonar') {
                         sh "./gradlew sonarqube \
                         -Dsonar.projectKey=sonar-test \
                         -Dsonar.host.url=http://13.124.107.70:9000 \
