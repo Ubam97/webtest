@@ -38,9 +38,3 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
-sonarqube {
-	properties {
-		property "117ebfae6c18f9093192aaa98e6bdb1ffe994df8", "sonar_test"
-	}
-}

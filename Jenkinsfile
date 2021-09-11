@@ -6,10 +6,11 @@ pipeline {
                 git  branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
             }
         }
-        stage('SonarQube Test') {
-            withSonarQubeEnv() {
-                sh 'chmod +x ./gradlew'
-                sh "./gradlew sonarqube"
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('My SonarQube Server') {
+                sh "./gradlew sonarqube -Dsonar.projectKey=test -Dsonar.host.url=http://13.124.107.70:9000 -Dsonar.login=jenkins"
+                }
             }
         }
         stage('Gradle Junit Test') {
