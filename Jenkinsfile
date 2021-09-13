@@ -30,7 +30,7 @@ pipeline {
                     withSonarQubeEnv(credentialsId: 'sonar') {
                         sh "./gradlew sonarqube \
                         -Dsonar.projectKey=sonar-test \
-                        -Dsonar.host.url=http://3.36.87.117:9000 \
+                        -Dsonar.host.url=http://3.34.187.106:9000/ \
                         -Dsonar.login=fb7db0007b25c4c98fa8f3e24801f3335b4211c9"
                     }
                 }
