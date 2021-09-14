@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test
+  name: test-2
   labels:
-    app: test
+    app: test-2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test
+      app: test-2
   template:
     metadata:
       labels:
-        app: test
+        app: test-2
     spec:
       containers:
-        - name: test
+        - name: test-2
           image: eub456/test:latest
           ports:
             - containerPort: 80
