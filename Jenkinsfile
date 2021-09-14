@@ -48,6 +48,15 @@ pipeline {
                 }
             }
         }
+        stage('Anchore') {
+            steps {
+                script {
+                    def imageLine = 'eub456/test:latest'
+                    writeFile file: 'anchore_images', text: imageLine
+                    anchore name: 'test', engineCredentialsId: 'anchore', bailOnFail: false
+                }
+            }
+        }
         stage('ArgoCD Deploy') {
             steps {
                 script {
