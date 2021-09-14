@@ -35,10 +35,9 @@ pipeline {
                 }
             }
         }       
-        stage('Anchore') {
+        stage('Anchore test') {
             steps {
                 script {
-                    sh "anchore-cli --url http://3.35.207.85:8228/v1 --u admin --p foobar image add eub456/test:latest"
                     def imageLine = 'eub456/test:latest'
                     writeFile file: 'eub456/test:latest', text: imageLine
                     anchore name: 'eub456/test:latest', engineCredentialsId: 'anchore', bailOnFail: false
