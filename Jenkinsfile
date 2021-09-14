@@ -53,7 +53,7 @@ pipeline {
                 script {
                     def imageLine = 'eub456/test:latest'
                     writeFile file: 'anchore_images', text: imageLine
-                    anchore name: 'test', engineCredentialsId: 'anchore', bailOnFail: false
+                    anchore name: 'eub456/test:latest', engineCredentialsId: 'anchore', bailOnFail: false
                 }
             }
         }
