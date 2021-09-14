@@ -6,7 +6,6 @@ pipeline {
                 git  branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
             }
         }
-
         stage('Gradle Junit Test') {
             steps {
                 sh 'chmod +x ./gradlew'
@@ -24,7 +23,7 @@ pipeline {
                 junit '**/build/test-results/test/*.xml'
             }
         } 
-       stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonar') {
@@ -35,7 +34,17 @@ pipeline {
                     }
                 }
             }
-       }
+        }       
+        stage('Anchore') {
+            steps {
+                script {
+                    sh "anchore-cli --url http://3.35.207.85:8228/v1 --u admin --p foobar image add eub456/test:latest"
+                    def imageLine = 'eub456/test:latest'
+                    writeFile file: 'eub456/test:latest', text: imageLine
+                    anchore name: 'eub456/test:latest', engineCredentialsId: 'anchore', bailOnFail: false
+                }
+            }
+        }
         stage('Push image') {
             steps {
                 script {
@@ -45,15 +54,6 @@ pipeline {
                         customImage.push("latest")
                         customImage.push("${env.BUILD_ID}")
                     }
-                }
-            }
-        }
-        stage('Anchore') {
-            steps {
-                script {
-                    def imageLine = 'eub456/test:latest'
-                    writeFile file: 'eub456/test:latest', text: imageLine
-                    anchore name: 'eub456/test:latest', engineCredentialsId: 'anchore', bailOnFail: false
                 }
             }
         }
