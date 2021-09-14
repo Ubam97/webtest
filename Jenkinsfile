@@ -53,7 +53,7 @@ pipeline {
                 script {
                     sshagent (credentials: ['argoCD']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.164.233.182 argocd repo add https://github.com/eub456/webtest.git"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.164.233.182 argocd app create test --repo https://github.com/eub456/webtest.git --sync-policy automated --path templates --dest-server https://kubernetes.default.svc --dest-namespace default"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.164.233.182 argocd app create test2 --repo https://github.com/eub456/webtest.git --sync-policy automated --path templates --dest-server https://kubernetes.default.svc --dest-namespace default"
                     }
                 }
             }
