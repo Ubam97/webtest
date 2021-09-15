@@ -35,9 +35,6 @@ dependencies {
 	}
 }
 
-
-apply plugin: 'org.owasp.dependencycheck'
-
 test {
 	useJUnitPlatform()
 }
