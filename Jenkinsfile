@@ -25,9 +25,9 @@ pipeline {
         } 
         stage('OWASP Dependency-Check') {
             steps {
-                sh "./gradlew dependencyCheckAnalyze"
-                }
+                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./"', odcInstallation: 'dependency'
             }
+        }
         stage('SonarQube analysis') {
             steps {
                 script {
