@@ -23,10 +23,9 @@ pipeline {
                 junit '**/build/test-results/test/*.xml'
             }
         } 
-        stage('OWASP Dependency-Check')
+        stage('OWASP Dependency-Check') {
             steps {
-                script {
-                    sh "./gradlew dependencyCheckAnalyze"
+                sh "./gradlew dependencyCheckAnalyze"
                 }
             }
         stage('SonarQube analysis') {
