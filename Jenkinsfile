@@ -25,7 +25,7 @@ pipeline {
         } 
         stage('OWASP Dependency-Check') {
             steps {
-                dependencyCheck additionalArguments: '-s "/var/jenkins_home/workspace/argoCD/build/libs/ " -f "HTML" -o "/var/jenkins_home/workspace/argoCD/build/reports/dependency"', odcInstallation: 'dependency'
+                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./"', odcInstallation: 'dependency'
             }
         }
         stage('SonarQube analysis') {
