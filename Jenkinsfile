@@ -25,7 +25,7 @@ pipeline {
         } 
         stage('OWASP Dependency-Check') {
             steps {
-                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./"', odcInstallation: 'dependency'
+                dependencyCheck additionalArguments: '-s "build/libs/ " -f "HTML" -o "build/reports/dependency"', odcInstallation: 'dependency'
             }
         }
         stage('SonarQube analysis') {
@@ -34,7 +34,7 @@ pipeline {
                     withSonarQubeEnv(credentialsId: 'sonar') {
                         sh "./gradlew sonarqube \
                         -Dsonar.projectKey=sonar-test \
-                        -Dsonar.host.url=http://http://13.124.161.132/:9000/ \
+                        -Dsonar.host.url=http://http://13.124.161.132:9000/ \
                         -Dsonar.login=fb7db0007b25c4c98fa8f3e24801f3335b4211c9"
                     }
                 }
