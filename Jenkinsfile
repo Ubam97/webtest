@@ -23,6 +23,12 @@ pipeline {
                 junit '**/build/test-results/test/*.xml'
             }
         } 
+        stage('OWASP Dependency-Check')
+            steps {
+                script {
+                    sh "./gradlew dependencyCheckAnalyze"
+                }
+            }
         stage('SonarQube analysis') {
             steps {
                 script {
