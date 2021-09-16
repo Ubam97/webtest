@@ -25,7 +25,7 @@ pipeline {
         } 
         stage('OWASP Dependency-Check') {
             steps {
-                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./"', odcInstallation: 'dependency'
+                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./" --prettyPrint', odcInstallation: 'dependency'
             }
         }
         stage('SonarQube analysis') {
@@ -34,7 +34,7 @@ pipeline {
                     withSonarQubeEnv(credentialsId: 'sonar') {
                         sh "./gradlew sonarqube \
                         -Dsonar.projectKey=sonar-test \
-                        -Dsonar.host.url=http://13.124.161.132:9000/ \
+                        -Dsonar.host.url=http://13.125.80.118:9000/ \
                         -Dsonar.login=fb7db0007b25c4c98fa8f3e24801f3335b4211c9"
                     }
                 }
@@ -65,8 +65,8 @@ pipeline {
             steps {
                 script {
                     sshagent (credentials: ['argoCD']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.164.169.252 argocd repo add https://github.com/eub456/webtest.git"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.164.169.252 argocd app create test2 --repo https://github.com/eub456/webtest.git --sync-policy automated --path templates --dest-server https://kubernetes.default.svc --dest-namespace default"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.37.55.30 argocd repo add https://github.com/eub456/webtest.git"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.37.55.30 argocd app create test2 --repo https://github.com/eub456/webtest.git --sync-policy automated --path templates --dest-server https://kubernetes.default.svc --dest-namespace default"
                     }
                 }
             }
