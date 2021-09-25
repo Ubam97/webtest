@@ -26,7 +26,7 @@ pipeline {
         stage('OWASP Dependency-Check') {
             steps {
                 dependencyCheck additionalArguments: '-s "./" -f "XML" -o "./" --prettyPrint', odcInstallation: 'dependency'
-                dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                dependencyCheckPublisher pattern: './dependency-check-report.xml'
             }
         }
         stage('SonarQube analysis') {
