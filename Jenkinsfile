@@ -27,6 +27,8 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '-s "./" -f "XML" -o "./" --prettyPrint', odcInstallation: 'dependency'
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./" --prettyPrint', odcInstallation: 'dependency'
+                dependencyCheckPublisher pattern: 'dependency-check-report.html'
             }
         }
         stage('SonarQube analysis') {
