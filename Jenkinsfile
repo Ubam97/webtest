@@ -76,8 +76,12 @@ pipeline {
         stage('Arachni scanner') {
             steps {
                 script {
-                    sshagent (credentials: ['test']) {
+                    sshagent (credentials: ['argoCD']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@54.180.114.224 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni http://abc77ca99adfe4e8eb3b2e571bcd8d1a-533161508.ap-northeast-2.elb.amazonaws.com/ --checks=xss* --report-save-path=test.afr"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@54.180.114.224 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni_reporter test.afr --reporter=json:outfile=my_report.json"
+                    }
+                }
+            }
+        }
     }
 }
