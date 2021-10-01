@@ -77,8 +77,8 @@ pipeline {
             steps {
                 script {
                     sshagent (credentials: ['argoCD']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.78.188.170 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni http://abc77ca99adfe4e8eb3b2e571bcd8d1a-533161508.ap-northeast-2.elb.amazonaws.com/ --checks=xss* --report-save-path=test.afr"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.78.188.170 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni_reporter test.afr --reporter=json:outfile=my_report.json"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.78.188.170 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni http://ad76946957102478ca9498816735f500-2089258281.ap-northeast-2.elb.amazonaws.com/ --report-save-path=arachni.afr"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.78.188.170 /home/ec2-user/arachni-1.5.1-0.5.12/bin/arachni_reporter arachni.afr --reporter=json:outfile=arachni.json.zip"
                     }
                 }
             }
