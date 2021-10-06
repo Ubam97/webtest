@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Progress') {
             steps {
-                git branch: 'main', credentialsId: 'eub456', url: 'https://github.com/eub456/webtest.git'
+                checkout scm
             }
         }
         stage('Gradle Junit Test') {
