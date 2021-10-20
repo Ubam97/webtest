@@ -3,7 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
-	id 'checkstyle'
+	id 'pmd'
 }
 
 def configDir = "${project.rootDir}/quality"
@@ -42,16 +42,9 @@ test {
 	useJUnitPlatform()
 }
 
-checkstyle {
-    toolVersion '8.36.1'
-    configFile file("$configDir/config/checkstyle.xml")
-	configProperties.checkstyleSuppressionsPath = file("$configDir/config/suppressions.xml").absolutePath
-}
-
-checkstyleMain {
-    source ='src/main/java'
-}
-
-checkstyleTest {
-    source ='src/test/java'
+pmd {
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    rulesMinimumPriority = 5
+    ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
 }
