@@ -6,6 +6,8 @@ plugins {
 	id 'checkstyle'
 }
 
+def configDir = "${project.rootDir}/quality"
+
 group = 'com.hyeonguj'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -42,7 +44,8 @@ test {
 
 checkstyle {
     toolVersion '8.36.1'
-    configFile file("checkstyle.xml")
+    configFile file("$configDir/config/checkstyle.xml")
+	configProperties.checkstyleSuppressionsPath = file("$configDir/config/suppressions.xml").absolutePath
 }
 
 checkstyleMain {
