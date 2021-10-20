@@ -23,13 +23,13 @@ pipeline {
                 junit '**/build/test-results/test/*.xml'
             }
         } 
-        stage('OWASP Dependency-Check') {
-            steps {
-                dependencyCheck additionalArguments: '-s "./" -f "XML" -o "./" --prettyPrint', odcInstallation: 'dependency'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./" --prettyPrint', odcInstallation: 'dependency'
-            }
-        }
+        //stage('OWASP Dependency-Check') {
+            //steps {
+                //dependencyCheck additionalArguments: '-s "./" -f "XML" -o "./" //--prettyPrint', odcInstallation: 'dependency'
+                //dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                //dependencyCheck additionalArguments: '-s "./" -f "HTML" -o "./" //--prettyPrint', odcInstallation: 'dependency'
+            //}
+        //}
         stage('SonarQube analysis') {
             steps {
                 script {
