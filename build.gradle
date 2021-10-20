@@ -43,8 +43,16 @@ test {
 }
 
 pmd {
+	ignoreFailures = true
     consoleOutput = true
     toolVersion = "6.21.0"
     rulesMinimumPriority = 5
-    ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+    reportsDir = file("${buildDir}/pmd-output")
+}
+
+pmdMain {
+	reports {
+		xml.destination = file("${pmd.reportsDir}/pmd-report.xml")
+		xml.enabled = true
+	}
 }
