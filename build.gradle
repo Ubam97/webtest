@@ -5,8 +5,6 @@ plugins {
 	id 'java'
 }
 
-def configDir = "${project.rootDir}/quality"
-
 group = 'com.hyeonguj'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -25,7 +23,12 @@ repositories {
 	mavenCentral()
 }
 
+spotbugs {
+  toolVersion = '4.4.2'
+}
+
 dependencies {
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -34,24 +37,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 	}
 }
 
 test {
 	useJUnitPlatform()
-}
-
-spotbugs {
-  toolVersion = '4.4.2'
-}
-
-spotbugsMain {
-    reports {
-        html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
 }
