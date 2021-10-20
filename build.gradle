@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id "com.github.spotbugs-base" version "5.0.0-beta.3"
 }
 
 group = 'com.hyeonguj'
@@ -23,12 +24,7 @@ repositories {
 	mavenCentral()
 }
 
-spotbugs {
-  toolVersion = '4.4.2'
-}
-
 dependencies {
-	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
