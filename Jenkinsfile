@@ -45,6 +45,11 @@ pipeline {
         stage('Sast Test') {
             steps {
                 sh "./gradlew check"
+                )
+                recordIssues(
+                    enabledForFailure: true, aggregatingResults: true,
+                    tools: [java(), spotbugs(pattern: '**/build/reports/spotbugs/main.xml', reportEncoding: 'UTF-8')]
+                )
             }
         }
         stage('Anchore test') {
