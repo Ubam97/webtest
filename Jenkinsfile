@@ -41,6 +41,7 @@ pipeline {
                     }
                 }
             }
+        }       
         stage('Push image') {
             steps {
                 script {
@@ -52,7 +53,7 @@ pipeline {
                     }
                 }
             }
-        }       
+        }
         stage('Anchore test') {
             steps {
                 script {
