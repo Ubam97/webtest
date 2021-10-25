@@ -22,6 +22,11 @@ pipeline {
             steps {
                 junit '**/build/test-results/test/*.xml'
             }
+        }
+        stage('Jacoco') {
+            steps {
+                jacoco execPattern: 'target/**.exec', runAlways: true
+            }
         } 
         //stage('OWASP Dependency-Check') {
             //steps {
