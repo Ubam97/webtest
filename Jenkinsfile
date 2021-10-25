@@ -41,6 +41,7 @@ pipeline {
                     }
                 }
             }
+        
         }       
         stage('Anchore test') {
             steps {
@@ -48,18 +49,6 @@ pipeline {
                     def imageLine = 'eub456/test:latest'
                     writeFile file: 'eub456/test:latest', text: imageLine
                     anchore name: 'eub456/test:latest', engineCredentialsId: 'anchore', bailOnFail: false
-                }
-            }
-        }
-        stage('Push image') {
-            steps {
-                script {
-                    checkout scm
-                    docker.withRegistry('https://registry.hub.docker.com', 'test') {
-                        def customImage = docker.build("eub456/test")
-                        customImage.push("latest")
-                        customImage.push("${env.BUILD_ID}")
-                    }
                 }
             }
         }
