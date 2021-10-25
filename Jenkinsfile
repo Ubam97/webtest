@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Jacoco') {
             steps {
-                jacoco execPattern: 'target/**.exec', runAlways: true
+                jacoco execPattern: 'build/jacoco/**.exec', runAlways: true
             }
         } 
         //stage('OWASP Dependency-Check') {
